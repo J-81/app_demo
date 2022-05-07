@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import {TasksLibraryContext} from "../Helpers/Context"
+import {LoginContext} from "../Helpers/Context"
+import Task from "./Task.js"
 
 function Form(props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [nextTaskID, setNextTaskID] = useState(0);
+  const {tasks, setTasks} = useContext(TasksLibraryContext)
+  const {userName} = useContext(LoginContext)
 
   function handleChangeTitle(e) {
     setTitle(e.target.value);
@@ -12,13 +18,31 @@ function Form(props) {
     setDescription(e.target.value);
   }
 
+  function addTask(title, description) {
+    const newTask = {
+      id: nextTaskID,
+      title: title ? title : "default Title",
+      description: description ? description : "default Description",
+    };
+    // copy original task map
+    const updatedTasksAll = new Map(tasks);
+    const updateTasksUser = updatedTasksAll.get(userName) ? updatedTasksAll.get(userName) : new Array();
+    updatedTasksAll.set(userName, [...updateTasksUser, newTask]);
+    setTasks(updatedTasksAll);
+    // Increment next task ID
+    setNextTaskID((prev) => prev + 1);
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
-    props.addTask(title, description);
+    addTask(title, description);
     setTitle("");
     setDescription("");
   }
+
+
   return (
+    <>
     <form onSubmit={handleSubmit}>
       <h2 className="label-wrapper">
         <label htmlFor="new-todo-input" className="label__lg">
@@ -54,6 +78,7 @@ function Form(props) {
         Add
       </button>
     </form>
+    </>
   );
 }
 

@@ -15,17 +15,40 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 85vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
+.App-name-logo{
+  background-color: #282c34;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(38px + 2vmin);
+  color: rgb(173, 200, 173);
+}
+
 .App-link {
   color: #61dafb;
+}
+
+.App-navbar {
+  display:flex; 
+  flex-direction:row;
+}
+
+.App-navbar-button {
+  padding: 10px;
+}
+
+.App-demo-instructions {
+  font-size: calc(14px + 2vmin);
+  color: rgb(204, 151, 151);
 }
 
 @keyframes App-logo-spin {
