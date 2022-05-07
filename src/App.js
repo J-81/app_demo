@@ -46,7 +46,8 @@ function App() {
         <p>Then create tasks (no confirmation message yet). </p>
         <p>Then see the user specific task list on the home screen. </p>
         <p> Then try logging out to see how the user task list goes away. </p>
-        <p> Log back in as the same user to recover their tasks!</p>
+        <p> Log back in as the same user to recover their tasks</p>
+        <p> TODO: Implement blocks</p>
       </div>
     </div>
   );
